@@ -1,23 +1,12 @@
-The run_analysis.R script performs 5 high level steps.
+About the files found in the GIT repo located at https://github.com/luisefigueroa/datasciencecoursera/tree/master/Getting%20and%20Cleaning%20Data.
 
-Step 0 reads the files listed below into data frame objects in memory:
+The run_analysis.R script consolidates all the steps required to load the different data sets from the Human Activity Recognition Using Smartphones Data Set found here:
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+into one consolidated data set with subject IDs for each observation as well as proper labels for the activity performed during the measurements taken on each observation as well as proper naming of all variables. The final step of the script aggregates all observations by subject id and activity and calculates the mean for each variable. 
 
-Activity_labels.txt
-Features.txt
-Subject_test.txt
-X_test.txt
-Y_test.txt
-X_train.txt
-Y-train.txt
+Only the run_analysis.R script is required for this analysis.
 
-In this step the data from the features file is also converted into a vector named featuresVector. The featuresVector is used to properly name the variables from the X_test and X_train data sets containing of the observations. 
+The Code Book briefly refers to the source files that describe the original experiment and describes how the script works as well as the variables found in the output data set.
 
-Step 1 uses the cbind and rbind functions to combine the different data sets for test and training observations and then it combines those into the sensorData super set containing all the observations from all files as well as the corresponding activity id. cbind and rbind functions where used to leverage the fact that the data in the source files is sorted as arrays where the first row of the Y_activity and subject files corresponded to the IDs for the first row of the X_activity files for both the train subset and the test subsets.
+Finally the sensorAverages.txt contains the output of the run_analysis.R script when run against the data collected in the Activity Recognition Using Smartphones Data Set.
 
-Step 2 extracts only the variables that included the mean() and std() substrings in their name while preserving the ActivityID and subjectID.
-
-Step 3 uses the merge command to do the equivalent of a join operation between the sensorData and the activity_labels data in order to add the activity labels to the sensorData super set.
-
-Step 4 of the project instructions was to appropriately able the variables. This was done in step 0 when the data was loaded. 
-
-Step 5 Creates a second data set named sensorAverages from the sensorData that aggregates the observations by activity and subject and produces the mean for all the variables. Finally it writes it uses the write.table function to write the sensorAverages data set to disk.
