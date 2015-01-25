@@ -1,3 +1,8 @@
+#=========================================================================================================================
+# Scritp created by Luis Figueroa on 1/24/2015
+# This script was created to produce a tidy data set for the "Getting and Cleaning Data" class from the 
+# Data Science specialization at Johns Hopkins university offered through Coursera.
+#=========================================================================================================================
 
 # 0._ Reading files into memory with proper desciption for variable names.
 
@@ -37,15 +42,16 @@ names(sensorData)
 # 3.- Use descriptive activity names to name the activities in the data set
 
 sensorData <- merge(activity, sensorData, by.x="activityID", by.y="activityID")  # Merging activity values with sensorData data set
-sensorData <- names(select(sensorData, -activityID)) # Removing activity ID since we now have the description
-
 
 # 4._ Appropriately lableling data set with descriptive variable names was done when data sets were loaded into memory in step 0
 
 # 5._ creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 sensorAverages <- group_by(sensorData, activity, subject) %>% summarise_each(funs(mean)) # Aggregation
-write.table(sensorAverages, file="./sensorAverages.txt", row.name=FALSE) # Output to text file
+write.table(sensorAverages, file="../sensorAverages.txt", row.name=FALSE) # Output to text file
+
+write.table(names(sensorAverages), file="../columnNames.txt", row.name=FALSE)
+
 
 
 
